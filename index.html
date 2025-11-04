@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Face Recognition Security Web App</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <main>
+    <div class="header-section">
+      <div class="header-icon">🔐</div>
+      <h1>Face Recognition Security</h1>
+      <p class="subtitle">Advanced AI-Powered Identity Verification System</p>
+    </div>
+
+    <section id="register" class="card">
+      <div class="section-header">
+        <span class="section-icon">👤</span>
+        <h2>Register User</h2>
+      </div>
+      <div class="input-group">
+        <label class="input-label">👤 User Name</label>
+        <input id="labelInput" placeholder="Enter name" class="styled-input">
+      </div>
+      
+      <div class="button-grid">
+        <label class="file-upload-btn">
+          <input type="file" id="imageUpload" accept="image/*" multiple>
+          <span>📁 Upload Photos</span>
+        </label>
+        <button id="useCameraBtn" class="btn btn-secondary">📷 Use Camera</button>
+      </div>
+      
+      <div class="button-grid">
+        <button id="captureBtn" class="btn btn-accent" disabled>📸 Capture Photo</button>
+        <button id="saveLabelBtn" class="btn btn-primary" disabled>💾 Save Label</button>
+      </div>
+      
+      <div class="button-grid">
+        <button id="clearAllBtn" class="btn btn-danger">🗑️ Clear All Data</button>
+        <button id="exportBtn" class="btn btn-success">📤 Export DB</button>
+        <button id="importBtn" class="btn btn-info">📥 Import DB</button>
+        <input type="file" id="importFile" accept=".json,application/json" style="display:none">
+      </div>
+      <div id="registeredList" class="registered-users"></div>
+      
+      <div id="samplePreviewWrap" class="preview-section">
+        <h4 class="preview-title">📷 Sample Preview</h4>
+        <div id="samplePreview" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="recognize" class="card">
+      <div class="section-header">
+        <span class="section-icon">🎥</span>
+        <h2>Live Recognition</h2>
+      </div>
+      <div class="video-wrap">
+        <div class="video-frame">
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="overlay"></canvas>
+          <div id="clickHint">👆 Click a face to identify</div>
+        </div>
+      </div>
+      
+      <div class="control-panel">
+        <button id="startRecBtn" class="btn btn-primary btn-large">▶️ Start Recognition</button>
+        <button id="stopRecBtn" class="btn btn-danger btn-large" disabled>⏹️ Stop</button>
+      </div>
+      
+      <div id="livenessWrap" class="liveness-panel">
+        <label class="checkbox-label">
+          <input type="checkbox" id="requireLiveness" checked>
+          <span class="checkbox-custom"></span>
+          <span>🔴 Liveness Detection Required</span>
+        </label>
+        <div class="status-badge">
+          <span id="livenessStatus">Not checked</span>
+        </div>
+      </div>
+      
+      <div id="alerts" class="alerts-panel">
+        <h4 class="panel-title">🔔 Alerts & Logs</h4>
+        <div class="input-group">
+          <label class="input-label">Webhook URL</label>
+          <input id="webhookUrl" placeholder="https://example.com/webhook" class="styled-input">
+        </div>
+        <button id="testWebhook" class="btn btn-accent">🔔 Send Test Alert</button>
+        <div id="logList" class="log-container"></div>
+      </div>
+    </section>
+
+    <!-- identification modal -->
+    <div id="idModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-icon">✅</div>
+        <h3 id="modalName">Name</h3>
+        <pre id="modalInfo">Click Confirm to continue</pre>
+        <button id="modalConfirm" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+
+    <div id="status" class="status-bar">
+      <div class="status-dot"></div>
+      <span>Loading AI models...</span>
+    </div>
+  </main>
+
+    <!-- Environment Configuration -->
+    <script src="scripts/config.js"></script>
+    
+    <!-- Face-api.js for browser-based face recognition -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+    
+    <!-- Server mode: saves to database via backend API with real AI face recognition -->
+    <script defer src="scripts/main-api.js"></script>
+</body>
+</html>

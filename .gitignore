@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# User data
+server/data/
+server/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

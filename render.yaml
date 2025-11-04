@@ -1,0 +1,21 @@
+services:
+  # Backend API Server - Universal (Works with MongoDB or JSON)
+  - type: web
+    name: face-recognition-backend
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: node server/server-universal.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: FRONTEND_URL
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+    # Disk storage for uploads (optional if using MongoDB for data)
+    disk:
+      name: uploads-disk
+      mountPath: /opt/render/project/src/server/uploads
+      sizeGB: 1

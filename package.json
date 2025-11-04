@@ -1,0 +1,23 @@
+{
+  "name": "face-recognition-security-system",
+  "version": "2.0.0",
+  "description": "Universal AI-powered face recognition system with automatic cloud database connection",
+  "main": "server/server-universal.js",
+  "scripts": {
+    "start": "node server/server-universal.js",
+    "dev": "node server/server-universal.js",
+    "install-backend": "cd server && npm install"
+  },
+  "keywords": [
+    "face-recognition",
+    "security",
+    "ai",
+    "access-control"
+  ],
+  "author": "vishalreddy2006",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
